@@ -6,3 +6,5 @@ List of practice code :
 1) Rock_Paper_Scissors : Using if, elif, else, while, break and continue
 
 2) Fibonacci_Series : Using while and function
+
+3) Cow_Bull_Game : Using random from numpy package, nested loops, function calls 
