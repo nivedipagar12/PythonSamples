@@ -1,4 +1,4 @@
-# Python_Samples_Beginner
+# Python_Samples
 This repository contains some beginner level Python practice programs
 
 List of practice code :
