@@ -9,6 +9,8 @@ List of Beginner Level Codes :
 
 3) Cow_Bull_Game : Using random from numpy package, nested loops, function calls 
 
-List of Intermediate Level Codes :
+4) Tic_Tac_Toe_Game : Using multiple functions, random package
 
-1) Tic_Tac_Toe_Game : Using multiple functions, random package
+List of Intermediate Level Codes (Object Oriented Programming) :
+
+Coming Soon  
