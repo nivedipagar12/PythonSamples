@@ -55,7 +55,7 @@ def choose_first():
 
 def space_check(board, position):
     '''This function decides if the specified position on the board is free or not'''
-    return board[position] == ' '
+    return position in range(1,10) and board[position] == ' '
 
 def full_board_check(board):
     '''This function uses the space_check() function to determine if the board is full or not'''
@@ -68,7 +68,7 @@ def player_choice(board):
     '''This function asks the user to choose a position at which they want to place their marker and places it if the
     specified position is available'''
     position = 0
-    while position not in range(1,10) and not space_check(board,position):
+    while not space_check(board,position):
         position = int(input('Choose a position (1-9)'))
     return position
 
