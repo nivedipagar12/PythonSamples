@@ -9,6 +9,7 @@
              4) Face cards (Jack, Queen and King) have the value of 10 and Aces have the value of either 1 or 11, depending
                 on the players preference
              5) A card sum of 21 is 'BLACK JACK', anything above 21 is a 'BUST'
+   Courtesy : This code has been developed by following the walk through exercise of Pierian-Data
 '''
 
 import random
