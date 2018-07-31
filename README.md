@@ -5,7 +5,7 @@ List of Beginner Level Codes :
 
 1) Rock_Paper_Scissors : Using if, elif, else, while, break and continue
 
-2) Fibonacci_Series : Using while and function
+2) Fibonacci_Series : Using function, global variables and pass
 
 3) Cow_Bull_Game : Using random package, nested loops, function calls, try and except block
 
