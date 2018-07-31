@@ -30,3 +30,6 @@ elif number == 2:
     sequence.append(b)
 else:
     fibonacci(number)
+
+print("Here is your fibonacci sequence")
+print(sequence)
