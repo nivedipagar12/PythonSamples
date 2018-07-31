@@ -2,67 +2,136 @@
    Author : Nivedita Pagar
    Date : 09/04/2018
    Details : The code generates a random 4 digit number and asks user to guess it
-             1) If a digit in the number guessed by the user is in the randomly generated number, but at the wrong position,
+             1) If a digit in the number guessed by the user is in the PC generated number, but at the wrong position,
                 the code returns it as a 'COW'
-             2) If a digit in the number guessed by the user is in the randomly generated number, and at the correct position,
+             2) If a digit in the number guessed by the user is in the PC generated number, and at the correct position,
                 the code returns it as a 'BULL'
-             3) This continues until the user guesses the correct number (4 Bulls)
+             3) This continues until the user guesses the correct digits at correct positions (4 Bulls)
 
              Example: Randomly generated number = 5678
              User guess: 5897
              Result: 1 BULL and 2 COW
              '''
 
-import numpy.random
+import random
 
-def comparison(a,b):
-    for i in range(len(guess)):
-        # If the digits of guess are in the number
-        if guess[i] in number:
-            # If the digits of guess are in the correct position
-            if guess[i] == number[i]:
-                cow_bull[1] += 1
-            else:
-                cow_bull[0] += 1
-    return cow_bull
-
+user_guess = 0
 user_continue = True
-while user_continue:
-    equal = False
-    while not equal:
-        # Generate a random 4 digit number, make sure that the 4 digits are distinct and don't repeat
-        rand = numpy.random.randint(1000,9999)
-        num1 = list(str(rand))
-        num2 = set(num1)
-        number = list(num2)
-        if num1 == number:
-            equal = True
 
-    print('Lets Play the Game of COW and BULL!! \nI have randomly generated a 4 digit number !!')
-    guesses = 0
-    right_wrong = True
-    # While loop runs until the correct number is guessed
-    while right_wrong:
-        user_in = input('Can you guess the number ??')
-        # Convert the user input to a list
-        guess = list(str(user_in))
-        # [cow, bull]
-        cow_bull = [0, 0]
-        # Call the comparison function to calculate the number of cows and bulls
-        comparison(number,guess)
-        if cow_bull[1] < 4:
-            print(f'You have {cow_bull[0]} COW and {cow_bull[1]} BULL')
-            guesses += 1
-        else:
-            print(f'Bingo !!!\nMy number was {rand} \nYou guessed {guesses} times \nYou Win !!')
-            right_wrong = False
-    # Ask the user if they want to continue the game or not
-    cont = input('Press y to play another game or press any other key to exit')
-    if cont.lower() == 'y':
-        continue
+'''generate_number : Function to generate a random 4 digit number'''
+def generate_number():
+    mylist = []
+    numlist = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    while(len(mylist) < 4):
+        x = random.choice(numlist)
+        if x not in mylist: # Making sure that the digits don't repeat in the number
+            mylist.append(x)
+    return mylist
+
+'''user_input : Function to ask the user for input. '''
+def user_input():
+    correct = False
+    global numlist
+    while(correct == False):
+        try:
+            user_number = input("Please guess the 4 digit number, separated by spaces :")
+            user_lst = user_number.split(" ")
+            user_lt = []
+            for i in user_lst:
+                i = int(i)
+                user_lt.append(i)
+            user_list = list(user_lt)
+            for x in user_list:
+                if x == 0:  # Making sure that 0 is not entered by the user.
+                    print("Invalid input !! Make sure you enter digits between 1 and 9 !!")
+                    correct = False
+                    break
+                else:
+                    correct = True
+            if correct == True:
+                if len(user_list) != 4: # Making sure the user has entered a 4 digit number
+                    correct = False
+                    break
+                else:
+                    correct = True
+        except ValueError:  # A fail safe in case the user enters a space or any other character before a number.
+            print("Invalid input !! Please try again !! \nMake sure the input is in the format 'x x x x', where x represents "
+                  "the digits")
+    return user_list
+
+'''bulls : Function to determine the number of bulls, if any'''
+def bulls(pc_num, user_num):
+    bulls = 0
+    global bulls_num
+    bulls_num = []
+    for i in range(0,4):
+        a = pc_num[i]
+        b = user_num[i]
+        if a == b:
+            bulls += 1
+            bulls_num.append(b)
+    return bulls
+
+'''descard_repitition : Function to make sure that the bulls are not again considered for calculating cows'''
+def discard_repetition(bulls_num, user_num):
+    for i in bulls_num:
+        for j in user_num:
+            if i == j:
+                user_num.remove(j)
+    return user_num
+
+'''cows : Function to determine the number of cows'''
+def cows(pc_num, new_user_num):
+    cows = 0
+    for num in new_user_num:
+        if num in pc_num:
+            cows += 1
+    return cows
+
+'''player_wins : Function to determine if the player has won or not'''
+def player_wins(bulls):
+    global game_continue
+    global user_guess
+    if bulls == 4:
+        user_guess += 1
+        print("Congratulations !!! You win !!!")
+        print("Number of guesses = " + str(user_guess))
+        game_continue = False
     else:
-        break
+        user_guess += 1
+        game_continue = True
+    return game_continue
 
+'''main_func : Function to run the basic code'''
+def main_func():
+    global user_continue
+    game_continue = True
+    pc_num = generate_number()
+    print("The Computer has randomly generated a four digit number, where each digit is between 1 and 9 and is unique "
+          "in the number.")
+    while(game_continue):
+        user_num = user_input()
+        result_bulls = bulls(pc_num, user_num)
+        new_user_num = discard_repetition(bulls_num, user_num)
+        result_cows = cows(pc_num,new_user_num)
+        print("Cows = " + str(result_cows))
+        print("Bulls = " + str(result_bulls))
+        game_continue = player_wins(result_bulls)
+    invalid = True
+    while(invalid): # Ask the user if they want to play again
+        user_cont = input("Do you want to play again? Press 'y' for yes and 'n' for no")
+        if user_cont[0].lower() == "n": # Account for typos (consider Y/Yes/y/yes)
+            user_continue = False
+            invalid = False
+        elif user_cont[0].lower() == "y":   # Consider N/No/n/no
+            invalid = False
+        else:   # For any other input
+            print("I don't understand !!!")
+
+print("Welcome to Cows and Bulls Game !!!")
+
+while(user_continue):
+    main_func()
 
 
 
