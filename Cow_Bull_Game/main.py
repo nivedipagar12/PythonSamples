@@ -41,19 +41,24 @@ def user_input():
                 i = int(i)
                 user_lt.append(i)
             user_list = list(user_lt)
-            for x in user_list:
-                if x == 0:  # Making sure that 0 is not entered by the user.
-                    print("Invalid input !! Make sure you enter digits between 1 and 9 !!")
-                    correct = False
-                    break
-                else:
-                    correct = True
-            if correct == True:
-                if len(user_list) != 4: # Making sure the user has entered a 4 digit number
-                    correct = False
-                    break
-                else:
-                    correct = True
+            repeat = check_repeat(user_list)
+            if repeat == False:
+                for x in user_list:
+                    if x == 0:  # Making sure that 0 is not entered by the user.
+                        print("Invalid input !! Make sure you enter digits between 1 and 9 !!")
+                        correct = False
+                        break
+                    else:
+                        correct = True
+                if correct == True:
+                    if len(user_list) != 4: # Making sure the user has entered a 4 digit number
+                        correct = False
+                        break
+                    else:
+                        correct = True
+            else:
+                print("Invalid. Repeat")
+                correct = False
         except ValueError:  # A fail safe in case the user enters a space or any other character before a number.
             print("Invalid input !! Please try again !! \nMake sure the input is in the format 'x x x x', where x represents "
                   "the digits")
@@ -79,6 +84,14 @@ def discard_repetition(bulls_num, user_num):
             if i == j:
                 user_num.remove(j)
     return user_num
+
+def check_repeat(user_list):
+    if len(set(user_list)) == 4:
+        repeat = False
+    else:
+        repeat = True
+    return repeat
+
 
 '''cows : Function to determine the number of cows'''
 def cows(pc_num, new_user_num):
@@ -132,7 +145,6 @@ print("Welcome to Cows and Bulls Game !!!")
 
 while(user_continue):
     main_func()
-
 
 
 
