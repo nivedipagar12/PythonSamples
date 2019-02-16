@@ -1,4 +1,4 @@
-# Python_Samples
+# PythonSamples
 This repository contains some of my Python Samples. It contains my practice programs from the time when I was trying to learn and pratice Python. 
 
 1) Rock_Paper_Scissors : The rock, paper, scissors game using if, elif, else, while, break and continue
