@@ -1,16 +1,14 @@
 # Python_Samples
-This repository contains some Python practice programs, starting at a beginner level and hopefully going up to advanced level
+This repository contains some of my Python Samples. It contains my practice programs from the time when I was trying to learn and pratice Python. 
 
-List of Beginner Level Codes :
+1) Rock_Paper_Scissors : The rock, paper, scissors game using if, elif, else, while, break and continue
 
-1) Rock_Paper_Scissors : Using if, elif, else, while, break and continue
+2) Fibonacci_Series : Generating a fibonacci series the number of values defined by user. Done using functions, global variables and pass
 
-2) Fibonacci_Series : Using function, global variables and pass
+3) Cow_Bull_Game : An intermediate level game, using random package, nested loops, function calls, try and except block
 
-3) Cow_Bull_Game : Using random package, nested loops, function calls, try and except block
+4) Tic_Tac_Toe_Game : The famous X - O game using multiple functions, random package
 
-4) Tic_Tac_Toe_Game : Using multiple functions, random package
+Stepping towards Object Oriented Programming(OOP) :
 
-List of Intermediate Level Codes (Object Oriented Programming) :
-
-1) Black_Jack_Game : Using Classes, Objects, Attributes, Functions, Try and Except Blocks
+5) Black_Jack_Game : A simplified version of the BlackJack game using Classes, Objects, Attributes, Functions, Try and Except Blocks
