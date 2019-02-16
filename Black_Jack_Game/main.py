@@ -1,4 +1,4 @@
-'''Title : Black Jack
+'''Title : Black Jack Game
    Author : Nivedita Pagar
    Date : 24/04/2018
    Details : 1) The code plays the Black Jack Game with One Human player where the computer itself is the dealer.
